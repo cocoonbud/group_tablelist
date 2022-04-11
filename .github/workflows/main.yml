@@ -22,6 +22,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Install Dependencies
-        run: flutter packages get
+        run: fvm flutter packages get
       - name: Analyze
-        run: flutter analyze lib test
+        run: fvm flutter analyze lib test
