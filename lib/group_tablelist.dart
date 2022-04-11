@@ -31,6 +31,8 @@ typedef CellForRowAtIndexPath = Widget Function(IndexPath indexPath);
 
 typedef NumberOfRowsInSection = int Function(int section);
 
+typedef DidSelectRowAtIndexPath = Function(IndexPath indexPath);
+
 class GroupSliverList extends StatefulWidget {
   final int numberOfSections;
 
@@ -52,6 +54,8 @@ class GroupSliverList extends StatefulWidget {
 
   final Widget Function()? placeholderView;
 
+  final DidSelectRowAtIndexPath? didSelectRowAtIndexPath;
+
   // ignore: prefer_const_constructors_in_immutables
   GroupSliverList(
       {Key? key,
@@ -64,7 +68,8 @@ class GroupSliverList extends StatefulWidget {
       this.footerInSection,
       this.overallHeader,
       this.overallFooter,
-      this.placeholderView})
+      this.placeholderView,
+      this.didSelectRowAtIndexPath})
       : super(key: key);
 
   @override
@@ -88,7 +93,11 @@ class _GroupSliverListState extends State<GroupSliverList> {
       delegate: SliverChildBuilderDelegate(
         (content, index) => GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: () {},
+          onTap: () {
+            IndexPath item = _allItemList[index];
+
+            widget.didSelectRowAtIndexPath!(item);
+          },
           child: _itemBuilder(index),
         ),
         childCount: _allItemList.length,

@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
           body: CustomScrollView(
             slivers: [
               SliverPadding(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     vertical: 0,
                     horizontal: 0,
                   ),
@@ -54,52 +54,74 @@ class _MyAppState extends State<MyApp> {
                         showcaseList[section].item.length,
                     cellForRowAtIndexPath: (indexPath) => _flutterShowcaseCell(
                         showcaseList[indexPath.section].item[indexPath.row]),
-                    headerInSection: (section) => _headerInSection(section),
-                    overallHeader: () => Text('overallHeader'),
-                    overallFooter: () => Text('overallFooter'),
-                    footerInSection: (section) => _footerInSection(section),
+                    headerInSection: (section) => _makeHeaderOrFooterInSection(
+                        'seaction ${section + 1} header',
+                        (section == 0)
+                            ? Colors.green.withOpacity(0.3)
+                            : Colors.blue.withOpacity(0.3)),
+                    overallHeader: () => _makeOverAll('overallHeader'),
+                    overallFooter: () => _makeOverAll('overallFooter'),
+                    footerInSection: (section) => _makeHeaderOrFooterInSection(
+                        'seaction ${section + 1} footer',
+                        (section == 0)
+                            ? Colors.green.withOpacity(0.3)
+                            : Colors.blue.withOpacity(0.3)),
+                    didSelectRowAtIndexPath: (indexPath) =>
+                        _handleCellClicked(indexPath),
                   )),
             ],
           )),
     );
   }
 
-  Widget? _headerInSection(int section) {
-    if (section == 0) {
-      return Container(
-        height: 30,
-        color: Colors.green.withOpacity(0.3),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'header ${section + 1}',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-              ),
-            ),
-          ],
-        ),
-      );
-    } else {
-      return null;
-    }
+  void _handleCellClicked(IndexPath indexPath) {
+    debugPrint('${indexPath.row} - ${indexPath.section} clicked');
   }
 
-  Widget? _footerInSection(int section) {
-    if (section == 0) {
-      return Text('seaction one footer');
-    } else {
-      return null;
-    }
+  Widget _makeOverAll(String str) {
+    return Container(
+      height: 60,
+      color: Colors.pink.withOpacity(0.3),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            str,
+            style: const TextStyle(
+              fontSize: 18,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget? _makeHeaderOrFooterInSection(String title, Color bgColor) {
+    return Container(
+      height: 30,
+      color: bgColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 18,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _flutterShowcaseCell(ShowcaseItemEntity item) {
     return Container(
       height: 44,
-      padding: EdgeInsets.only(left: 20, right: 20),
+      padding: const EdgeInsets.only(left: 20, right: 20),
       child: Column(
         children: [
           SizedBox(
@@ -110,17 +132,16 @@ class _MyAppState extends State<MyApp> {
               children: <Widget>[
                 Text(
                   item.name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     color: Colors.black,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
               ],
             ),
           ),
-          Spacer(),
-          Divider(height: 1),
+          const Divider(height: 1),
         ],
       ),
     );
