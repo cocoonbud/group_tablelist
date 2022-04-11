@@ -21,7 +21,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
       - name: Install Dependencies
-        run: fvm flutter packages get
+        run: flutter packages get
       - name: Analyze
-        run: fvm flutter analyze lib test
+        run: flutter analyze lib test
