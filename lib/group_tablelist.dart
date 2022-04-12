@@ -208,7 +208,7 @@ class GroupTableList extends StatefulWidget {
   ///
   /// Some subtypes of [ScrollView] can infer this value automatically. For
   /// example [ListView] will use the number of widgets in the child list,
-  /// while the [new ListView.separated] constructor will use half that amount.
+  /// while the [ListView.separated] constructor will use half that amount.
   ///
   /// For [CustomScrollView] and other types which do not receive a builder
   /// or list of widgets, the child count must be explicitly provided. If the
@@ -236,26 +236,37 @@ class GroupTableList extends StatefulWidget {
   /// Defaults to [Clip.hardEdge].
   final Clip clipBehavior;
 
+  /// Asks the data source to return the number of sections in the tablelist. default 1
   final int numberOfSections;
 
+  /// Returns the number of rows (table cells) in a specified section.
   final NumberOfRowsInSection? numberOfRowsInSection;
 
+  /// Returns the table cell at the index path you specify.
   final CellForRowAtIndexPath? cellForRowAtIndexPath;
 
+  /// Returns the separator at the index path you specify.
   final SeparatorAtIndexPath? separatorAtIndexPath;
 
+  /// Asks for a separator to display of the specified section of the tablelist.
   final SectionSeparator? sectionSeparator;
 
+  /// Asks for a view to display in the header of the specified section of the tablelist.
   final HeaderInSection? headerInSection;
 
+  /// Asks for a view to display in the footer of the specified section of the tablelist.
   final FooterInSection? footerInSection;
 
+  /// Headerview of the entire tablelist.
   final Widget Function()? overallHeader;
 
+  /// Footerview of the entire tablelist.
   final Widget Function()? overallFooter;
 
+  /// The no data View  is displayed when no data.
   final Widget Function()? placeholderView;
 
+  /// The callback when a list item is clicked
   final DidSelectAtIndexPath? didSelectAtIndexPath;
 
   const GroupTableList(
