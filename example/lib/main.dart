@@ -1,25 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:group_tablelist/group_tablelist.dart';
-import 'showcase.dart';
+
+import 'group_tablelist_example.dart';
+import 'sliver_group_tablelist_example.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
-List<ShowcaseEntity> showcaseList = <ShowcaseEntity>[
-  ShowcaseEntity(title: 'UI', item: <ShowcaseItemEntity>[
-    ShowcaseItemEntity(
-        name: "Some common controls",
-        contentType: ShowcaseContentType.flutterUI),
-    ShowcaseItemEntity(
-        name: "Animation", contentType: ShowcaseContentType.flutterAnimation),
-  ]),
-  ShowcaseEntity(title: 'Multi-Threading', item: <ShowcaseItemEntity>[
-    ShowcaseItemEntity(
-        name: "Multi-Threading",
-        contentType: ShowcaseContentType.flutterMultithreading),
-  ]),
-];
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -36,114 +22,74 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Group Tableview'),
-          ),
-          body: CustomScrollView(
-            slivers: [
-              SliverPadding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 0,
-                    horizontal: 0,
-                  ),
-                  sliver: GroupSliverList(
-                    numberOfSections: showcaseList.length,
-                    numberOfRowsInSection: (section) =>
-                        showcaseList[section].item.length,
-                    cellForRowAtIndexPath: (indexPath) => _flutterShowcaseCell(
-                        showcaseList[indexPath.section].item[indexPath.row]),
-                    headerInSection: (section) => _makeHeaderOrFooterInSection(
-                        'seaction ${section + 1} header',
-                        (section == 0)
-                            ? Colors.green.withOpacity(0.3)
-                            : Colors.blue.withOpacity(0.3)),
-                    overallHeader: () => _makeOverAll('overallHeader'),
-                    overallFooter: () => _makeOverAll('overallFooter'),
-                    footerInSection: (section) => _makeHeaderOrFooterInSection(
-                        'seaction ${section + 1} footer',
-                        (section == 0)
-                            ? Colors.green.withOpacity(0.3)
-                            : Colors.blue.withOpacity(0.3)),
-                    didSelectRowAtIndexPath: (indexPath) =>
-                        _handleCellClicked(indexPath),
-                  )),
-            ],
-          )),
-    );
+    {
+      return MaterialApp(
+        title: 'Group TableList Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const Home(),
+      );
+    }
+  }
+}
+
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Group List View Demo'),
+        ),
+        body: _makeBody());
   }
 
-  void _handleCellClicked(IndexPath indexPath) {
-    debugPrint('${indexPath.row} - ${indexPath.section} clicked');
-  }
-
-  Widget _makeOverAll(String str) {
-    return Container(
-      height: 60,
-      color: Colors.pink.withOpacity(0.3),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            str,
-            style: const TextStyle(
-              fontSize: 18,
-              color: Colors.black,
+  Widget _makeBody() {
+    return Center(
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        TextButton(
+          onPressed: () {
+            // 跳转到一个新的页面
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return const GroupTablelistExample();
+            }));
+          },
+          child: const Text(
+            "GroupTablelist",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.blue,
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+              height: 1, // 设置下行高，否则字体下沉
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget? _makeHeaderOrFooterInSection(String title, Color bgColor) {
-    return Container(
-      height: 30,
-      color: bgColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 18,
-              color: Colors.black,
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return const SliverGroupTablelistExample();
+            }));
+          },
+          child: const Text(
+            "SliverGroupTablelist",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.pink,
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+              height: 1, // 设置下行高，否则字体下沉
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _flutterShowcaseCell(ShowcaseItemEntity item) {
-    return Container(
-      height: 44,
-      padding: const EdgeInsets.only(left: 20, right: 20),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 43,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  item.name,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
-                ),
-                const Spacer(),
-              ],
-            ),
-          ),
-          const Divider(height: 1),
-        ],
-      ),
+        ),
+      ]),
     );
   }
 }
