@@ -56,7 +56,6 @@ class _HomeState extends State<Home> {
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         TextButton(
           onPressed: () {
-            // 跳转到一个新的页面
             Navigator.of(context).push(MaterialPageRoute(builder: (context) {
               return const GroupTablelistExample();
             }));
@@ -68,7 +67,7 @@ class _HomeState extends State<Home> {
               color: Colors.blue,
               fontWeight: FontWeight.w600,
               fontSize: 16,
-              height: 1, // 设置下行高，否则字体下沉
+              height: 1, 
             ),
           ),
         ),
@@ -85,7 +84,7 @@ class _HomeState extends State<Home> {
               color: Colors.pink,
               fontWeight: FontWeight.w600,
               fontSize: 16,
-              height: 1, // 设置下行高，否则字体下沉
+              height: 1,
             ),
           ),
         ),

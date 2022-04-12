@@ -20,7 +20,7 @@ A flutter grouped list widget similar to the iOS UITableview method name.
 Add the package to your pubspec.yaml:
 
 ```yaml
-group_tablelist: ^0.0.2
+group_tablelist: ^0.0.3
 ```
 
  In your dart file, import the library:
@@ -48,7 +48,7 @@ GroupSliverList(
 ### Parameters:
 
 | Name                      | Description                                                  | Required | Default value |
-| ------------------------- | ------------------------------------------------------------ | :------: | :-----------: |
+| :------------------------ | ------------------------------------------------------------ | :------: | :-----------: |
 | `numberOfSections`        | Asks the data source to return the number of sections in the tablelist. |    no    |       1       |
 | `numberOfRowsInSection`   | Returns the number of rows (table cells) in a specified section. | required |       -       |
 | `cellForRowAtIndexPath`   | Returns the table cell at the index path you specify.        | required |       -       |
@@ -58,5 +58,6 @@ GroupSliverList(
 | `footerInSection`         | Asks for a view to display in the footer of the specified section of the tablelist. |    no    |       -       |
 | `overallHeader`           | Headerview of the entire tablelist.                          |    no    |       -       |
 | `overallFooter`           | Footerview of the entire tablelist.                          |    no    |       -       |
-| `placeholderView`         | The No Data View  is displayed when no data.                 |    no    |       -       |
-| `didSelectRowAtIndexPath` | A row is selected.                                           |    no    |       -       |
+| `placeholderView`         | The no data view  is displayed when no data.                 |    no    |       -       |
+| `didSelectRowAtIndexPath` | The callback when a list item is clicked.                    |    no    |       -       |
+

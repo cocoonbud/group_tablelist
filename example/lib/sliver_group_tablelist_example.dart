@@ -37,7 +37,7 @@ class _SliverGroupTablelistExampleState
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Group Tableview'),
+          title: const Text('Sliver Group Tablelist Example'),
         ),
         body: CustomScrollView(
           slivers: [
