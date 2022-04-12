@@ -4,7 +4,7 @@ A flutter grouped list widget similar to the iOS UITableview method name.
 
 # Grouped list package for Flutter.
 
-[![Pub](https://img.shields.io/pub/v/group_tablelist.svg)](https://pub.dev/packages/grouped_list)![CI](https://github.com/cocoonbud/group_tablelist/workflows/CI/badge.svg?branch=master)
+[![Pub](https://img.shields.io/pub/v/group_tablelist.svg)](https://pub.dev/packages/group_tablelist)![CI](https://github.com/cocoonbud/group_tablelist/workflows/CI/badge.svg?branch=master)
 
 <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h16sblahmuj20r01gcmz6.jpg" alt="WeChat72b21c420d6bb06007a44d196e78906a" style="zoom:25%;" />
 
