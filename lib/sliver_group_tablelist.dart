@@ -76,9 +76,7 @@ class _SliverGroupTableListState extends State<SliverGroupTableList> {
         (content, index) => GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () {
-            IndexPath item = _allItemList[index];
-
-            widget.didSelectAtIndexPath!(item);
+            widget.didSelectAtIndexPath!(_allItemList[index]);
           },
           child: _itemBuilder(index),
         ),

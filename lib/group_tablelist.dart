@@ -344,9 +344,13 @@ class _GroupTableListState extends State<GroupTableList> {
         keyboardDismissBehavior: widget.keyboardDismissBehavior,
         restorationId: widget.restorationId,
         clipBehavior: widget.clipBehavior,
-        itemBuilder: (context, index) {
-          return _itemBuilder(context, index) ?? Container();
-        });
+        itemBuilder: (content, index) => GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                widget.didSelectAtIndexPath!(_allItemList[index]);
+              },
+              child: _itemBuilder(context, index) ?? Container(),
+            ));
   }
 
   void _calIndexPath() {
