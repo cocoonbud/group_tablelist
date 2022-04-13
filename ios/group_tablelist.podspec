@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'group_tablelist'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'A flutter grouped list widget similar to the iOS UITableview method name.'
   s.description      = <<-DESC
 A flutter grouped list widget similar to the iOS UITableview method name.

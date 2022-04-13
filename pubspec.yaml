@@ -1,6 +1,6 @@
 name: group_tablelist
 description: A flutter grouped list widget similar to the iOS UITableview method name.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/cocoonbud
 repository: https://github.com/cocoonbud/group_tablelist.git
 
