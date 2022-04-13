@@ -51,7 +51,7 @@ SliverGroupTableList(
  Instead of using a `Listview` create a `GroupTableList` Widget:
 
 ```dart
-SliverGroupTableList(
+GroupTableList(
   numberOfSections: showcaseList.length,
   numberOfRowsInSection: (section) => showcaseList[section].item.length,
   cellForRowAtIndexPath: (indexPath) => _flutterShowcaseCell(
